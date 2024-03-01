@@ -5,11 +5,14 @@ import {
   StyleSheet,
   Image,
   View,
-
+  Font,
 } from "@react-pdf/renderer";
 
 // Create styles
 const styles = StyleSheet.create({
+  page: {
+    fontFamily: "Roboto Condensed",
+  },
   container: {
     display: "flex",
     position: "absolute",
@@ -47,7 +50,7 @@ const styles = StyleSheet.create({
   },
   headerLeft: {
     zIndex: 1000,
-    marginLeft: "40px",
+    marginLeft: "30px",
     marginTop: "30px",
     display: "flex",
     justifyContent: "space-between",
@@ -91,6 +94,7 @@ const styles = StyleSheet.create({
     color: "rgb(204, 203, 203)",
     width: "150px",
     lineHeight: "1.3",
+    marginBottom: "10px",
   },
   imageCompany: {
     width: "70px",
@@ -108,11 +112,11 @@ const styles = StyleSheet.create({
   },
 
   headerRightMainText: {
-    color: "black",
-    fontSize: "20px",
+    color: "#ff8800",
+    fontSize: "30px",
   },
   table: {
-    marginTop: "100px",
+    marginTop: "50px",
   },
   tableHeader: {
     display: "flex",
@@ -193,15 +197,31 @@ const styles = StyleSheet.create({
   },
   footerText: {
     textAlign: "center",
-    width: "150px",
+    width: "180px",
     margin: "auto",
-    marginTop: "120px"
-  }
+    marginTop: "70px",
+  },
+  signature: {
+    fontSize: "20px",
+    marginTop: "40px",
+    marginHorizontal: "auto",
+    width: "50px",
+    borderBottom: "1px solid blue",
+    fontFamily: "Sacramento",
+  },
 });
+Font.register({
+  family: "Roboto Condensed",
+  src: "http://fonts.gstatic.com/s/roboto/v16/zN7GBFwfMP4uA6AR0HCoLQ.ttf",
 
+});
+Font.register({
+  family: "Sacramento",
+  src: "http://fonts.gstatic.com/s/sacramento/v4/WFDkXpubrEwopJnSlHV6CC3USBnSvpkopQaUR-2r7iU.ttf",
+});
 // Create Document Component
 const MyDocument = ({ data }) => {
-  console.log(data)
+  console.log(data);
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -218,13 +238,14 @@ const MyDocument = ({ data }) => {
               <Text style={styles.headerLeftMainText}>21 dec 2023</Text>
             </View>
             <View style={styles.headerLeftMainTextsCol}>
-              <Text style={styles.headerLeftMainTextCol}>
-                {data.name}
-              </Text>
+              <Text style={styles.headerLeftMainTextCol}>{data.name}</Text>
               <Text style={styles.headerLeftMainTextCol}>+8801795024751</Text>
               <Text style={styles.headerLeftMainTextColAddress}>
-                Adalot Para, Tangail Sadar Tangail Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Aspernatur non eius iste, ullam{" "}
+                Adalot Para, Tangail Sadar Tangail Lorem ipsum dolor 
+              </Text>
+
+              <Text style={styles.headerLeftMainTextColAddress}>
+                Lorem ipsum dolor,  Lorem ipsum dolor sit amet, 
               </Text>
             </View>
           </View>
@@ -240,39 +261,40 @@ const MyDocument = ({ data }) => {
         </View>
 
         <View style={styles.PaymentStatus}>
-          <Text style={styles.PaymentStatusText}>Payment Status: PAID  ✅</Text>
+          <Text style={styles.PaymentStatusText}>Payment Status: PAID ✅</Text>
         </View>
         <View style={styles.table}>
-          <View style={ styles.tableHeader}>
-            <Text style={ styles.tableText}>S/N</Text>
-            <Text style={ styles.tableText}>Product Name</Text>
-            <Text style={ styles.tableText}>Product Quantity</Text>
-            <Text style={ styles.tableText}>Price</Text>
+          <View style={styles.tableHeader}>
+            <Text style={styles.tableText}>S/N</Text>
+            <Text style={styles.tableText}>Product Name</Text>
+            <Text style={styles.tableText}>Product Quantity</Text>
+            <Text style={styles.tableText}>Price</Text>
           </View>
-          <View style={ styles.tableBody}>
-            <Text style={ styles.tableText}>01</Text>
-            <Text style={ styles.tableText}>Nitro</Text>
-            <Text style={ styles.tableText}>250 gram</Text>
-            <Text style={ styles.tableText}>500</Text>
+          <View style={styles.tableBody}>
+            <Text style={styles.tableText}>01</Text>
+            <Text style={styles.tableText}>Nitro</Text>
+            <Text style={styles.tableText}>250 gram</Text>
+            <Text style={styles.tableText}>500</Text>
           </View>
-          <View style={ styles.tableBody}>
-            <Text style={ styles.tableText}>02</Text>
-            <Text style={ styles.tableText}>Delivery Cost</Text>
-            <Text style={ styles.tableText}></Text>
-            <Text style={ styles.tableText}>500</Text>
+          <View style={styles.tableBody}>
+            <Text style={styles.tableText}>02</Text>
+            <Text style={styles.tableText}>Delivery Cost</Text>
+            <Text style={styles.tableText}></Text>
+            <Text style={styles.tableText}>500</Text>
           </View>
-          <View style={ styles.tableFooter}>
-            <Text style={ styles.tableText}></Text>
-            <Text style={ styles.tableText}></Text>
-            <Text style={ styles.tableText}>Total =</Text>
-            <Text style={ styles.tableText}>500</Text>
+          <View style={styles.tableFooter}>
+            <Text style={styles.tableText}></Text>
+            <Text style={styles.tableText}></Text>
+            <Text style={styles.tableText}>Total =</Text>
+            <Text style={styles.tableText}>500</Text>
           </View>
         </View>
-        <View>
-          <Text style={styles.footerText}>Thank you for buying our products</Text>
+        <View style={styles.footerText}>
+          <Text>Thank you for buying our products</Text>
+          <Text style={styles.signature}>sohan</Text>
         </View>
-        <Image src={'/imgs/jarOne.png'} style={styles.jarImageOne}></Image>
-        <Image src={'/imgs/jarTwo.png'} style={styles.jarImageTwo}></Image>
+        <Image src={"/imgs/jarOne.png"} style={styles.jarImageOne}></Image>
+        <Image src={"/imgs/jarTwo.png"} style={styles.jarImageTwo}></Image>
       </Page>
     </Document>
   );

@@ -6,7 +6,7 @@ import { CiReceipt } from "react-icons/ci";
 function Form() {
   return (
     <div>
-      <form className=" p-6">
+      <form className=" px-6 pt-6">
         <div className=" grid gap-x-3 gap-y-8 md:gap-x-6">
           <label className="form-control w-full max-w-xs">
             <div className="label">

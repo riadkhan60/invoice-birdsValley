@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-
 import { IoLocationOutline } from "react-icons/io5";
 import { FiUser } from "react-icons/fi";
 import { IoPhonePortraitOutline } from "react-icons/io5";
@@ -34,23 +33,25 @@ function Form({ setFormData }) {
   }
 
   return (
-    <div className=" overflow-hidden p-3">
-      <form className=" " onSubmit={handleSubmit(onSubmit)} >
-        <div className="form-control col-span-2">
-          <label className="label flex cursor-pointer items-center justify-end gap-3 ">
-            <MdOutlinePaid />
-            Paid
-            <input
-              type="checkbox"
-              {...register("paid")}
-              defaultChecked
-              className="checkbox-primary accent-sky-400"
-              onFocus={handleFocus}
+    <div className="  px-6 pt-2">
+      <form className=" " onSubmit={handleSubmit(onSubmit)}>
+        <div className="form-control col-span-2 ">
+          <div className="  flex  justify-end">
+            <label className="label flex cursor-pointer items-center justify-end gap-3 ">
+              <MdOutlinePaid />
+              Paid
+              <input
+                type="checkbox"
+                {...register("paid")}
+                defaultChecked
+                className="checkbox-primary accent-sky-400"
+                onFocus={handleFocus}
               />
-          </label>
+            </label>
+          </div>
         </div>
-        <div className=" grid gap-x-3 gap-y-8 md:gap-x-6">
-          <label className="form-control w-full max-w-xs">
+        <div className=" grid gap-x-3 gap-y-5 md:gap-x-6  md:gap-y-8">
+          <label className="form-control w-full max-w-xs ">
             <div className="label">
               <span className="label-text text-slate-300"> Full Name</span>
               <span className="label-text text-slate-300">
@@ -60,10 +61,10 @@ function Form({ setFormData }) {
             <input
               type="text"
               placeholder="Type here"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full max-w-xs "
               onFocus={handleFocus}
               {...register("name", { required: true })}
-              />
+            />
           </label>
           <label className="form-control w-full max-w-xs">
             <div className="label">
@@ -78,10 +79,10 @@ function Form({ setFormData }) {
               className="input input-bordered w-full max-w-xs"
               onFocus={handleFocus}
               {...register("phoneNumber", { required: true })}
-              />
+            />
           </label>
 
-          <label className="form-control">
+          <label className="form-control w-full max-w-xs">
             <div className="label">
               <span className="label-text text-slate-300">Home Address</span>
               <span className="label-text text-slate-300">
@@ -89,13 +90,13 @@ function Form({ setFormData }) {
               </span>
             </div>
             <textarea
-              className="textarea textarea-bordered h-20 resize-none"
+              className="textarea textarea-bordered h-20 w-full max-w-xs resize-none"
               placeholder="Customer full address"
               {...register("address", { required: true })}
             ></textarea>
           </label>
 
-          <label className="form-control">
+          <label className="form-control w-full max-w-xs">
             <div className="label">
               <span className="label-text text-slate-300">
                 Customer Comment
@@ -105,7 +106,7 @@ function Form({ setFormData }) {
               </span>
             </div>
             <textarea
-              className="textarea textarea-bordered h-20 resize-none"
+              className="textarea textarea-bordered h-20 w-full max-w-xs resize-none"
               placeholder="Customer requirements"
               {...register("additionalInformation")}
             ></textarea>
@@ -141,6 +142,7 @@ function Form({ setFormData }) {
               {...register("productQuantity", { required: true })}
             >
               <option disabled>Pick one</option>
+              <option>50gm</option>
               <option>100gm</option>
               <option>150gm</option>
               <option>200gm</option>
