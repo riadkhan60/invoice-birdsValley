@@ -18,7 +18,7 @@ function App() {
           {tab === "track" && <TrackFormRcpt />}
         </div>
 
-        <div className=" mx-auto max-w-[454px] p-0 max-md:p-6">
+        <div className=" mx-auto max-w-[454px] md:mt-6 p-0 max-md:p-6">
           {formData.open && (
             <PDFDownloadLink
               document={<MyDocument data={formData} />}
