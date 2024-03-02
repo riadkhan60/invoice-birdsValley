@@ -11,7 +11,7 @@ import {
 // Create styles
 const styles = StyleSheet.create({
   page: {
-    fontFamily: "Roboto Condensed",
+    fontFamily: "Roboto",
   },
   container: {
     display: "flex",
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
   },
 });
 Font.register({
-  family: "Roboto Condensed",
+  family: "Roboto",
   src: "http://fonts.gstatic.com/s/roboto/v16/zN7GBFwfMP4uA6AR0HCoLQ.ttf",
 
 });
@@ -219,6 +219,7 @@ Font.register({
   family: "Sacramento",
   src: "http://fonts.gstatic.com/s/sacramento/v4/WFDkXpubrEwopJnSlHV6CC3USBnSvpkopQaUR-2r7iU.ttf",
 });
+
 // Create Document Component
 const MyDocument = ({ data }) => {
   console.log(data);
