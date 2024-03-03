@@ -3,10 +3,21 @@ import { FiUser } from "react-icons/fi";
 import { IoLocationOutline, IoPhonePortraitOutline } from "react-icons/io5";
 import { IoIosLink } from "react-icons/io";
 import { CiReceipt } from "react-icons/ci";
-function Form() {
+import { useForm } from "react-hook-form";
+function Form({ setTrackFormData }) {
+  const { register, handleSubmit, reset } = useForm();
+
+  function handleFocus() {
+    setTrackFormData({ open: false });
+  }
+
+  function onSubmit(data) {
+    setTrackFormData({ open: true, ...data });
+  }
+
   return (
     <div>
-      <form className=" px-6 pt-6">
+      <form className=" px-6 pt-6" onSubmit={handleSubmit(onSubmit)}>
         <div className=" grid gap-x-3 gap-y-8 md:gap-x-6">
           <label className="form-control w-full max-w-xs">
             <div className="label">
@@ -19,7 +30,9 @@ function Form() {
               type="text"
               placeholder="Type here"
               className="input input-bordered w-full max-w-xs"
-            />
+              {...register("name", { required: true })}
+              onFocus={handleFocus}
+              />
           </label>
           <label className="form-control w-full max-w-xs">
             <div className="label">
@@ -32,7 +45,9 @@ function Form() {
               type="text"
               placeholder="Type here"
               className="input input-bordered w-full max-w-xs"
-            />
+              {...register("phoneNumber", { required: true })}
+              onFocus={handleFocus}
+              />
           </label>
           <label className=" max-full form-control col-span-2 w-full">
             <div className="label">
@@ -45,11 +60,13 @@ function Form() {
               type="text"
               placeholder="Type here"
               className="max-full input input-bordered w-full"
-            />
+              {...register("trackingID", { required: true })}
+              onFocus={handleFocus}
+              />
           </label>
           <label className=" max-full form-control col-span-2 w-full">
             <div className="label">
-              <span className="label-text text-slate-300">Tracking Link</span>
+              <span className="label-text text-slate-300">Tracking Link (optional)</span>
               <span className="label-text text-slate-300">
                 <IoIosLink />
               </span>
@@ -58,7 +75,9 @@ function Form() {
               type="text"
               placeholder="Type here"
               className="max-full input input-bordered w-full"
-            />
+              {...register("trackingLink")}
+              onFocus={handleFocus}
+              />
           </label>
 
           <div className=" col-span-2 mt-2 flex  items-center justify-center">

@@ -23,6 +23,7 @@ function Form({ setFormData }) {
     const invoiceData = {
       ...data,
       date: `${dateTimeFormate.format(new Date())}`,
+      fullDateTime: new Date().toUTCString(),
     };
     setFormData({ open: true, ...invoiceData });
     reset();

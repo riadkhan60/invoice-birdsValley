@@ -1,27 +1,32 @@
 import { RiBillLine } from "react-icons/ri";
 import { TbLocationFilled } from "react-icons/tb";
-function Navmenu({setTab , tab}) {
+function Navmenu({ setTab, tab, setFormData, setTrackFormData }) {
   return (
     <div className=" flex flex-grow items-center justify-center pt-6">
-      <ul className="menu gap-2 rounded-box bg-base-200 menu-horizontal">
+      <ul className="menu menu-horizontal gap-2 rounded-box bg-base-200">
         <li className="disabled">
-          <a className=" text-sky-400 uppercase font-bold">{`Bird's`} Valley</a>
+          <a className=" font-bold uppercase text-sky-400">{`Bird's`} Valley</a>
         </li>
-        <li onClick={() => setTab("bill")}>
+        <li
+          onClick={() => {
+            setTab("bill");
+            setTrackFormData({ open: false });
+          }}
+        >
           <a className={`${tab === "bill" ? "active" : ""}`}>
             <RiBillLine />
-            <span  className=" max-sm:hidden">
-            Bill Receipt
-            </span>
+            <span className=" max-sm:hidden">Bill Receipt</span>
           </a>
         </li>
-        <li onClick={() => setTab("track")}>
+        <li
+          onClick={() => {
+            setTab("track");
+            setFormData({ open: false });
+          }}
+        >
           <a className={`${tab === "track" ? "active" : ""}`}>
             <TbLocationFilled />
-            <span className=" max-sm:hidden">
-
-            Tracking Receipt
-            </span>
+            <span className=" max-sm:hidden">Tracking Receipt</span>
           </a>
         </li>
       </ul>

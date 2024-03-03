@@ -86,7 +86,8 @@ const styles = StyleSheet.create({
   headerLeftMainTextCol: {
     color: "white",
     marginBottom: "10px",
-    fontSize: "14px",
+    fontSize: "16px",
+    fontWeight: "medium",
   },
 
   headerLeftMainTextColAddress: {
@@ -95,6 +96,7 @@ const styles = StyleSheet.create({
     width: "150px",
     lineHeight: "1.3",
     marginBottom: "10px",
+    marginTop: "15px",
   },
   imageCompany: {
     width: "70px",
@@ -109,11 +111,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     gap: "20px",
+    position: "relative",
+    top: "40px",
   },
 
   headerRightMainText: {
     color: "#ff8800",
     fontSize: "30px",
+    fontWeight: "medium",
   },
   table: {
     marginTop: "50px",
@@ -171,16 +176,26 @@ const styles = StyleSheet.create({
     color: "black",
     padding: "30px",
     backgroundColor: "#17f762",
-    fontWeight: "bold",
+    fontWeight: "medium",
     borderRadius: "10px",
     width: "60%",
+    fontStyle: "italic",
+  },
+  PaymentStatusTextRed: {
+    color: "black",
+    padding: "30px",
+    backgroundColor: "#f71717",
+    fontWeight: "medium",
+    borderRadius: "10px",
+    width: "60%",
+    fontStyle: "italic",
   },
   jarImageOne: {
     position: "absolute",
     bottom: "20px",
     left: "50px",
     width: "150px",
-    backgroundColor: "rgb(247, 247, 54)",
+    backgroundColor: "#f7f736",
     borderRadius: "50%",
     padding: "10px",
     transform: "rotate(-28deg)",
@@ -209,17 +224,44 @@ const styles = StyleSheet.create({
     borderBottom: "1px solid blue",
     fontFamily: "Sacramento",
   },
+  nitroImage: {
+    position: "absolute",
+    top: "30px",
+    right: "40px",
+    backgroundColor: "green",
+    width: "130px",
+    zIndex: "-10000000",
+    borderRadius: "50%",
+  },
 });
-Font.register({
-  family: "Roboto",
-  src: "https://fonts.gstatic.com/s/roboto/v16/zN7GBFwfMP4uA6AR0HCoLQ.ttf",
 
-});
 Font.register({
   family: "Sacramento",
   src: "https://fonts.gstatic.com/s/sacramento/v4/WFDkXpubrEwopJnSlHV6CC3USBnSvpkopQaUR-2r7iU.ttf",
 });
 
+Font.register({
+  family: "Roboto",
+  fonts: [
+    {
+      src: "./fonts-roboto/Roboto-Bold.ttf",
+      fontWeight: "bold",
+    },
+    {
+      src: "./fonts-roboto/Roboto-Medium.ttf",
+      fontWeight: "medium",
+    },
+    {
+      src: "./fonts-roboto/Roboto-Regular.ttf",
+      fontWeight: "normal",
+    },
+    {
+      src: "./fonts-roboto/Roboto-MediumItalic.ttf",
+      fontStyle: "italic",
+      fontWeight: "medium",
+    },
+  ],
+});
 // Create Document Component
 const MyDocument = ({ data }) => {
   console.log(data);
@@ -236,17 +278,21 @@ const MyDocument = ({ data }) => {
             <Text style={styles.headerLeftMain}>INVOICE</Text>
             <View style={styles.headerLeftMainTexts}>
               <Text style={styles.headerLeftMainText}>Date</Text>
-              <Text style={styles.headerLeftMainText}>21 dec 2023</Text>
+              <Text style={styles.headerLeftMainText}>{data.date}</Text>
             </View>
             <View style={styles.headerLeftMainTextsCol}>
               <Text style={styles.headerLeftMainTextCol}>{data.name}</Text>
-              <Text style={styles.headerLeftMainTextCol}>+8801795024751</Text>
+              <Text style={styles.headerLeftMainTextCol}>
+                {data.phoneNumber}
+              </Text>
               <Text style={styles.headerLeftMainTextColAddress}>
-                Adalot Para, Tangail Sadar Tangail Lorem ipsum dolor 
+                {data.address}
               </Text>
 
               <Text style={styles.headerLeftMainTextColAddress}>
-                Lorem ipsum dolor,  Lorem ipsum dolor sit amet, 
+                {data.additionalInformation
+                  ? data.additionalInformation
+                  : "Additional Information: N/A"}
               </Text>
             </View>
           </View>
@@ -262,7 +308,15 @@ const MyDocument = ({ data }) => {
         </View>
 
         <View style={styles.PaymentStatus}>
-          <Text style={styles.PaymentStatusText}>Payment Status: PAID ✅</Text>
+          {data.paid ? (
+            <Text style={styles.PaymentStatusText}>
+              Payment Status: PAID ✅
+            </Text>
+          ) : (
+            <Text style={styles.PaymentStatusTextRed}>
+              Payment Status: UNPAID ❌
+            </Text>
+          )}
         </View>
         <View style={styles.table}>
           <View style={styles.tableHeader}>
@@ -273,29 +327,34 @@ const MyDocument = ({ data }) => {
           </View>
           <View style={styles.tableBody}>
             <Text style={styles.tableText}>01</Text>
-            <Text style={styles.tableText}>Nitro</Text>
-            <Text style={styles.tableText}>250 gram</Text>
-            <Text style={styles.tableText}>500</Text>
+            <Text style={styles.tableText}>{data.product}</Text>
+            <Text style={styles.tableText}>{data.productQuantity}</Text>
+            <Text style={styles.tableText}>{data.price} BDT</Text>
           </View>
           <View style={styles.tableBody}>
             <Text style={styles.tableText}>02</Text>
             <Text style={styles.tableText}>Delivery Cost</Text>
             <Text style={styles.tableText}></Text>
-            <Text style={styles.tableText}>500</Text>
+            <Text style={styles.tableText}>{data.deliveryCost} BDT</Text>
           </View>
           <View style={styles.tableFooter}>
             <Text style={styles.tableText}></Text>
             <Text style={styles.tableText}></Text>
             <Text style={styles.tableText}>Total =</Text>
-            <Text style={styles.tableText}>500</Text>
+            <Text style={styles.tableText}>
+              {Number(data.price) + Number(data.deliveryCost)} BDT
+            </Text>
           </View>
         </View>
         <View style={styles.footerText}>
           <Text>Thank you for buying our products</Text>
           <Text style={styles.signature}>sohan</Text>
         </View>
-        <Image src={"/imgs/jarOne.png"} style={styles.jarImageOne}></Image>
-        <Image src={"/imgs/jarTwo.png"} style={styles.jarImageTwo}></Image>
+
+        <Text style={{ position: 'absolute', bottom: '5px', right: '5px', fontSize: '6px', opacity: '0.3', color: 'black' }}>{data.fullDateTime}</Text>
+        <Image src={"/imgs/nitro.png"} style={styles.jarImageOne}></Image>
+        <Image src={"/imgs/nitro.png"} style={styles.jarImageTwo}></Image>
+        <Image src={"/imgs/nitroOne.jpg"} style={styles.nitroImage}></Image>
       </Page>
     </Document>
   );
