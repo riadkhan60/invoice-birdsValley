@@ -6,6 +6,7 @@ import { PDFDownloadLink, PDFViewer} from "@react-pdf/renderer";
 import { MdOutlineFileDownload } from "react-icons/md";
 import MyDocument from "./Pdf";
 import TrackingIDPdf from "./TrackingIDPdf";
+import TrackingImage from "./TrackingImage";
 const Context = createContext();
 function App() {
   const [tab, setTab] = useState("bill");
@@ -80,6 +81,7 @@ function App() {
           <TrackingIDPdf />
         </PDFViewer>
       </div> */}
+      {/* <TrackingImage data={{name: 'Mahmudul Hasan Khan', phoneNumer: '01711111111', trackingID: 'asdadad'}}/> */}
     </Context.Provider>
   );
 }
